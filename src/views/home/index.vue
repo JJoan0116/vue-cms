@@ -29,7 +29,7 @@
               :default-active="activePath"
             >
               <i class="el-icon-menu"></i>
-              <span>{{ item.authName }}</span>
+              <span>{{ subIem.authName }}</span>
             </el-menu-item>
           </el-submenu>
         </el-menu>
