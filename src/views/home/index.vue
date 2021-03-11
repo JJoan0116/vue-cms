@@ -1,9 +1,18 @@
 <template>
   <el-container class="container">
-    <el-header></el-header>
+    <el-header class="header">
+      <img src="../../assets/logo.png" alt="" class="logo" />
+      <h1>hello word</h1>
+    </el-header>
     <el-container>
       <el-aside class="aside">
-        <el-menu active-text-color="#333" unique-opened router class="menu">
+        <el-menu
+          active-text-color="#1890ff"
+          unique-opened
+          router
+          class="menu"
+          @select="menuClick"
+        >
           <el-submenu
             v-for="item in menuList"
             :key="item.id"
@@ -16,7 +25,8 @@
             <el-menu-item
               v-for="subIem in item.children"
               :key="subIem.id"
-              :index="subIem.id + ''"
+              :index="subIem.path + ''"
+              :default-active="activePath"
             >
               <i class="el-icon-menu"></i>
               <span>{{ item.authName }}</span>
@@ -43,7 +53,8 @@ export default {
         301: 'el-icon-goods',
         401: 'el-icon-document',
         501: 'el-icon-pie-chart'
-      }
+      },
+      activePath: ''
     };
   },
   created() {
@@ -56,9 +67,11 @@ export default {
         if (data.meta.status !== 200) {
           this.$message.console.error(data.meta.msg);
         }
-        console.log('data.data', data.data);
         this.menuList = data.data;
       });
+    },
+    menuClick(key) {
+      this.activePath = `/${key}`;
     }
   }
 };
@@ -68,9 +81,23 @@ export default {
 .container {
   height: 100%;
 }
+
+.header {
+  border-bottom: solid 1px #e6e6e6;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
 .aside {
   border-right: solid 1px #e6e6e6;
 }
+
 .menu {
   border-right: none;
 }

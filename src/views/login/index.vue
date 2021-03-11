@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import Enums from '../../enums';
+
 export default {
   name: 'login',
   data() {
@@ -61,7 +63,7 @@ export default {
         if (valid) {
           this.$http.post('/login', this.loginForm).then((res) => {
             const { data } = res || {};
-            window.sessionStorage.setItem('cms-vue-token', data?.data?.token);
+            window.sessionStorage.setItem(Enums.TOKEN_NAME, data?.data?.token);
             this.$message.success('登录成功');
             this.$router.push('/home');
           });

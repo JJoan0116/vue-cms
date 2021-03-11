@@ -3,13 +3,15 @@ import VueRouter from 'vue-router';
 import Login from '../views/login';
 import Home from '../views/home';
 import Welcome from '../views/welcome';
+import User from '../views/user';
+import Enums from '../enums';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path: '/login',
@@ -23,6 +25,10 @@ const routes = [
       {
         path: '/welcome',
         component: Welcome
+      },
+      {
+        path: '/user',
+        component: User
       }
     ]
   }
@@ -37,7 +43,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     next();
   }
-  const token = window.sessionStorage.getItem('cms-vue-token');
+  const token = window.sessionStorage.getItem(Enums.TOKEN_NAME);
   if (!token) {
     next('/login');
   }
