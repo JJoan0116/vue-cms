@@ -5,6 +5,7 @@ import Home from '../views/home';
 import Welcome from '../views/welcome';
 import User from '../views/user';
 import Right from '../views/right';
+import Role from '../views/role';
 import Enums from '../enums';
 
 Vue.use(VueRouter);
@@ -34,6 +35,10 @@ const routes = [
       {
         path: '/right',
         component: Right
+      },
+      {
+        path: '/role',
+        component: Role
       }
     ]
   }
